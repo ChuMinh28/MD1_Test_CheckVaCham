@@ -3,10 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Check Va Cham</title>
-    <script src="CheckVaCham.js"></script>
+
 </head>
 <body onload="letGo()">
-<img id="bocDau" src="image/bocdau.jpg" style="position: absolute;left: 0;top:0;" height="200" width="260" alt="anh dang tai">
-<img id="congAn" src="image/congan.jpg" style="position: absolute;left: 70%;top:70%;" height="187" width="270" alt="anh dang tai">
+<img id="bocDau" src="image/bocdau.jpg" alt="anh dang tai">
+<img id="congAn" src="image/congan.jpg" alt="anh dang tai">
+<script>
+
+    let xeMay = document.getElementById('bocDau')
+    let congAn = document.getElementById('congAn')
+    function upArrowPressed() {
+        xeMay.style.top = parseInt(xeMay.style.top) -10 + 'px'
+    }
+    function downArrowPressed() {
+        xeMay.style.top = parseInt(xeMay.style.top) +10 + 'px'
+    }
+    function leftArrowPressed() {
+        xeMay.style.left = parseInt(xeMay.style.left) -10 + 'px'
+    }
+    function rightArrowPressed() {
+        xeMay.style.left = parseInt(xeMay.style.left) +10 + 'px'
+    }
+    function moveSelection(evt) {
+        console.log(xeMay.style.left)
+        switch (evt.keyCode) {
+            case 37:
+                leftArrowPressed()
+                break
+            case 39:
+                rightArrowPressed()
+                break
+            case 38:
+                upArrowPressed()
+                break
+            case 40:
+                downArrowPressed()
+                break
+        }
+        checkVaCham()
+    }
+    function init() {
+        xeMay.style.left = 0 + 'px';
+        xeMay.style.top = 0 + 'px';
+        xeMay.style.position = 'absolute'
+        xeMay.style.width=250 +'px'
+        xeMay.style.height= 200 + 'px'
+        congAn.style.left = 1050 + 'px';
+        congAn.style.top = 500 + 'px';
+        congAn.style.width=200 +'px'
+        congAn.style.height= 200 + 'px'
+        congAn.style.position = 'absolute';
+    }
+    init();
+    console.log(xeMay.style.left)
+    function letGo() {
+        window.addEventListener('keydown', moveSelection)
+    }
+    function checkVaCham() {
+        let L1= parseInt(xeMay.style.left)
+        let T1= parseInt(xeMay.style.top)
+        let W1=parseInt(xeMay.style.width)
+        let H1= parseInt(xeMay.style.height)
+        let L2 =parseInt(congAn.style.left)
+        let T2 = parseInt(congAn.style.top)
+        let W2 = parseInt(congAn.style.width)
+        let H2=  parseInt(congAn.style.height)
+        if (L1+W1>=L2 && T1+H1>=T2 && T1<=T2+H2 && L1<=L2+W2){
+            alert('Tấp vô lề em ơiii')
+        }
+    }
+</script>
 </body>
 </html>
